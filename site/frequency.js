@@ -175,7 +175,7 @@ export function initFrequency(data, { onPickTech }) {
   const cats = Object.keys(counts).sort((a, b) => CATEGORY_ORDER.indexOf(a) - CATEGORY_ORDER.indexOf(b));
   $('freqCats').innerHTML = [['', 'All', all.length], ...cats.map((c) => [c, c, counts[c]])]
     .map(([val, label, n]) => `<button class="chip" role="tab" type="button" data-val="${esc(val)}" data-cat="${esc(val)}"
-      aria-selected="${val === ''}">${val ? '<span class="dot"></span>' : ''}${esc(label)} <small>${n}</small></button>`).join('');
+      aria-selected="${val === ''}">${esc(label)} <small>${n}</small></button>`).join('');
 
   const render = () => {
     const projects = state.cat ? all.filter((p) => p.category === state.cat) : all;

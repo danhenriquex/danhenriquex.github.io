@@ -20,7 +20,7 @@ Edit `portfolio.config.json`:
 | --- | --- |
 | `featured` | repos shown in the Featured section, in this order |
 | `exclude` | repos never shown |
-| `headline`, `about`, `links` | hero text and buttons (LinkedIn, email, CV…) |
+| `headline`, `tagline`, `links` | hero text, and the header/hero buttons (GitHub, LinkedIn, CV…) |
 | `include_forks`, `include_archived` | include forks / archived repos |
 
 From GitHub itself (no code change): add the topic **`featured`** to feature a repo, **`portfolio-hide`** to hide it.

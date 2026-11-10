@@ -809,6 +809,7 @@ def main() -> None:
         "username": owner,
         "name": cfg.get("name") or user.get("name") or owner,
         "headline": cfg.get("headline") or user.get("bio") or "",
+        "tagline": cfg.get("tagline", ""),
         "about": cfg.get("about", []),
         "avatar": user.get("avatar_url"),
         "location": user.get("location"),

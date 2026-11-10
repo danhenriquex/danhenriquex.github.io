@@ -3,9 +3,9 @@ import { initFrequency } from './frequency.js';
 
 const LANG_COLORS = {
   Python: '#3572A5', TypeScript: '#3178c6', JavaScript: '#f1e05a', 'Jupyter Notebook': '#DA5B0B',
-  HTML: '#e34c26', CSS: '#563d7c', SCSS: '#c6538c', 'C++': '#f34b7d', C: '#555555', Java: '#b07219',
-  Kotlin: '#A97BFF', Swift: '#F05138', 'Objective-C': '#438eff', Ruby: '#701516', Go: '#00ADD8',
-  Rust: '#dea584', MATLAB: '#e16737', Shell: '#89e051', Makefile: '#427819', Dockerfile: '#384d54',
+  HTML: '#e34c26', CSS: '#563d7c', SCSS: '#c6538c', 'C++': '#f34b7d', C: '#8b8b8b', Java: '#b07219',
+  Kotlin: '#A97BFF', Swift: '#F05138', 'Objective-C': '#438eff', Ruby: '#b0413e', Go: '#00ADD8',
+  Rust: '#dea584', MATLAB: '#e16737', Shell: '#89e051', Makefile: '#427819', Dockerfile: '#5d8494',
   HCL: '#844FBA', Dart: '#00B4AB', R: '#198CE7', Starlark: '#76d275', PLpgSQL: '#336790',
 };
 const CATEGORY_ORDER = ['AI & LLMs', 'Machine Learning', 'Data Engineering', 'Data Science',
@@ -30,18 +30,21 @@ const ago = (iso) => {
 
 const star = '<svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M8 .25a.75.75 0 0 1 .67.42l1.88 3.81 4.2.61a.75.75 0 0 1 .42 1.28l-3.04 2.96.72 4.19a.75.75 0 0 1-1.09.79L8 12.33l-3.76 1.98a.75.75 0 0 1-1.09-.79l.72-4.19L.83 6.37a.75.75 0 0 1 .42-1.28l4.2-.61L7.33.67A.75.75 0 0 1 8 .25Z"/></svg>';
 
-function langBar(langs) {
+// Thin segmented bar with the figures beside it (language share of the repo's code).
+function langBar(langs, max = 3) {
   if (!langs?.length) return '';
-  return `<div class="langbar" title="${esc(langs.map((l) => `${l.name} ${l.pct}%`).join(' · '))}">${
-    langs.map((l) => `<span style="width:${l.pct}%;background:${LANG_COLORS[l.name] || '#999'}"></span>`).join('')
-  }</div>`;
+  const color = (n) => LANG_COLORS[n] || '#8b8b8b';
+  const shown = langs.slice(0, max);
+  const rest = langs.slice(max).reduce((a, l) => a + l.pct, 0);
+  return `<div class="langs">
+    <div class="langbar" role="img" aria-label="${esc(langs.map((l) => `${l.name} ${l.pct}%`).join(', '))}">${
+      langs.map((l) => `<span style="flex:${l.pct};background:${color(l.name)}"></span>`).join('')}</div>
+    <div class="lang-legend">${shown.map((l) => `<span><i style="background:${color(l.name)}"></i>${esc(l.name)} <em>${fmtPct(l.pct)}</em></span>`).join('')}${
+      rest > 0.05 ? `<span><em>+${langs.length - max} · ${fmtPct(rest)}</em></span>` : ''}</div>
+  </div>`;
 }
 
-function tags(stack, max = 5) {
-  const shown = stack.slice(0, max).map((s) => `<span class="tag">${esc(s)}</span>`).join('');
-  const more = stack.length > max ? `<span class="tag more">+${stack.length - max}</span>` : '';
-  return `<div class="tags">${shown}${more}</div>`;
-}
+const fmtPct = (v) => `${v >= 10 ? Math.round(v) : Math.round(v * 10) / 10}%`;
 
 function autoBadge(p) {
   return p.summary_source === 'generated'
@@ -49,11 +52,10 @@ function autoBadge(p) {
 }
 
 function card(p) {
-  return `<button class="card" type="button" data-cat="${esc(p.category)}" data-name="${esc(p.name)}">
+  return `<button class="card" type="button" data-name="${esc(p.name)}">
     <span class="cat">${esc(p.category)}${autoBadge(p)}</span>
     <h3>${esc(p.title)}</h3>
     <p>${esc(p.summary)}</p>
-    ${tags(p.stack)}
     ${langBar(p.languages)}
     <div class="card-foot">
       <span>Updated ${ago(p.updated)}</span>
@@ -62,46 +64,21 @@ function card(p) {
   </button>`;
 }
 
-const monogram = (p) => `<div class="mono">${p.stack.slice(0, 6).map(esc).join('<span>·</span>')}</div>`;
-
-function featuredCard(p) {
-  const cover = p.cover
-    ? `<img src="${esc(p.cover)}" alt="" loading="lazy">`
-    : monogram(p);
-  return `<button class="card" type="button" data-cat="${esc(p.category)}" data-name="${esc(p.name)}">
-    <div class="cover">${cover}</div>
-    <div class="body">
-      <span class="cat">${esc(p.category)}</span>
-      <h3>${esc(p.title)}</h3>
-      <p>${esc(p.summary)}</p>
-      ${tags(p.stack, 6)}
-      <div class="card-foot"><span>Updated ${ago(p.updated)}</span>
-        <span class="meta">${p.stars ? `<span>${star} ${p.stars}</span>` : ''}</span></div>
-    </div>
-  </button>`;
-}
-
 // ---------------------------------------------------------------------------
 
-function renderProfile({ profile, projects, generated_at }) {
-  document.title = `${profile.name} · Projects`;
+function renderProfile({ profile, generated_at }) {
+  document.title = `${profile.name} — ${profile.headline || 'Projects'}`;
+  $('brand').firstChild.textContent = profile.username;
+  $('headline').textContent = profile.headline ? `// ${profile.headline}` : '';
   $('name').textContent = profile.name;
-  $('headline').textContent = profile.headline;
-  $('about').innerHTML = (profile.about || []).map((l) => `<li>${esc(l)}</li>`).join('');
-  if (profile.avatar) { $('avatar').src = profile.avatar; $('avatar').alt = profile.name; }
-  $('location').textContent = profile.location ? `📍 ${profile.location}` : '';
+  $('tagline').textContent = profile.tagline || '';
   const links = profile.links?.length ? profile.links : [{ label: 'GitHub', url: profile.github }];
-  $('links').innerHTML = links.map((l) => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join('');
-  $('ghLink').href = profile.github;
-
-  const techs = new Set(projects.flatMap((p) => p.stack));
-  const recent = projects.reduce((a, p) => (p.updated > a ? p.updated : a), '');
-  $('stats').innerHTML = [
-    ['Projects', projects.length],
-    ['Technologies', techs.size],
-    ['Last commit', recent ? ago(recent) : '—'],
-  ].map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('');
-  $('generated').textContent = `Last synced ${new Date(generated_at).toLocaleString()}`;
+  const ext = (l, cls = '') => `<a ${cls ? `class="${cls}" ` : ''}href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}${cls ? ' ↗' : ''}</a>`;
+  $('navLinks').innerHTML = links.map((l) => ext(l)).join('');
+  $('heroCta').innerHTML = '<a class="btn primary" href="#projects" id="seeProjects">See projects</a>'
+    + links.map((l) => ext(l, 'btn')).join('');
+  $('copyright').textContent = `© ${new Date().getFullYear()} ${profile.name}`;
+  $('generated').textContent = `synced from GitHub ${ago(generated_at)}`;
 }
 
 function renderControls(projects) {
@@ -110,7 +87,7 @@ function renderControls(projects) {
   const cats = Object.keys(counts).sort((a, b) => CATEGORY_ORDER.indexOf(a) - CATEGORY_ORDER.indexOf(b));
   $('categories').innerHTML = [['', 'All', projects.length], ...cats.map((c) => [c, c, counts[c]])]
     .map(([val, label, n]) => `<button class="chip" role="tab" type="button" data-val="${esc(val)}" data-cat="${esc(val)}"
-      aria-selected="${state.cat === val}">${val ? '<span class="dot"></span>' : ''}${esc(label)} <small>${n}</small></button>`).join('');
+      aria-selected="${state.cat === val}">${esc(label)} <small>${n}</small></button>`).join('');
 
   const stackCounts = {};
   projects.forEach((p) => p.stack.forEach((s) => { stackCounts[s] = (stackCounts[s] || 0) + 1; }));
@@ -140,7 +117,7 @@ function renderList() {
   const list = filtered();
   $('projects').innerHTML = list.map(card).join('');
   $('empty').hidden = list.length > 0;
-  $('count').textContent = `${list.length} of ${DATA.projects.length}`;
+  $('count').textContent = list.length === DATA.projects.length ? list.length : `${list.length} of ${DATA.projects.length}`;
   document.querySelectorAll('#categories .chip').forEach((c) =>
     c.setAttribute('aria-selected', String(c.dataset.val === state.cat)));
 }
@@ -151,18 +128,16 @@ async function openProject(name) {
   const p = DATA.projects.find((x) => x.name === name);
   if (!p) return;
   const d = $('dialog');
-  d.querySelector('.sheet').dataset.cat = p.category;
   $('dCat').innerHTML = esc(p.category) + autoBadge(p);
   $('dTitle').textContent = p.title;
   $('dSummary').textContent = p.summary;
   $('dLinks').innerHTML = [
     `<a class="btn primary" href="${esc(p.url)}" target="_blank" rel="noopener">View code ↗</a>`,
     p.homepage ? `<a class="btn" href="${esc(p.homepage)}" target="_blank" rel="noopener">Live demo ↗</a>` : '',
-    `<span class="btn" style="cursor:default">Created ${fmtDate(p.created)} · Updated ${fmtDate(p.updated)}</span>`,
+    `<span class="meta">Created ${fmtDate(p.created)} · Updated ${fmtDate(p.updated)}</span>`,
   ].join('');
   $('dStack').outerHTML = `<div class="tags" id="dStack">${p.stack.map((s) => `<span class="tag">${esc(s)}</span>`).join('')}</div>`;
-  $('dLangs').outerHTML = `<div id="dLangs">${langBar(p.languages)}<div class="lang-legend" style="margin-top:8px">${
-    p.languages.map((l) => `<span><i style="background:${LANG_COLORS[l.name] || '#999'}"></i>${esc(l.name)} ${l.pct}%</span>`).join('')}</div></div>`;
+  $('dLangs').innerHTML = langBar(p.languages, 5);
 
   const readme = $('dReadme');
   if (p.readme) {
@@ -211,11 +186,12 @@ function bind() {
   $('dialog').addEventListener('close', () => {
     if (location.hash) history.replaceState(null, '', location.pathname + location.search);
   });
-  $('themeToggle').addEventListener('click', () => {
-    const root = document.documentElement;
-    const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
-    root.dataset.theme = dark ? 'light' : 'dark';
-    try { localStorage.setItem('theme', root.dataset.theme); } catch {}
+  // "See projects" -> Projects tab, scrolled to the list.
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('#seeProjects')) return;
+    e.preventDefault();
+    showTab('projects');
+    $('projectsSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 }
 
@@ -242,7 +218,7 @@ function pickTech(tech) {
   $('stackFilter').value = tech;
   renderList();
   showTab('projects');
-  $('projects').closest('section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  $('projectsSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 async function init() {
@@ -256,12 +232,7 @@ async function init() {
   renderProfile(DATA);
   const featured = DATA.projects.filter((p) => p.featured);
   $('featuredSection').hidden = !featured.length;
-  $('featured').innerHTML = featured.map(featuredCard).join('');
-  // Broken cover image -> fall back to the stack monogram.
-  $('featured').querySelectorAll('.cover img').forEach((img) => img.addEventListener('error', () => {
-    const p = DATA.projects.find((x) => x.name === img.closest('.card').dataset.name);
-    img.parentNode.innerHTML = monogram(p);
-  }));
+  $('featured').innerHTML = featured.map(card).join('');
   renderControls(DATA.projects);
   renderList();
   const hash = decodeURIComponent(location.hash.slice(1));

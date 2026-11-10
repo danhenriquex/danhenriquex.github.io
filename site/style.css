@@ -29,7 +29,7 @@
 
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0; background: var(--background); color: var(--foreground);
   font: 16px/1.5 var(--sans); -webkit-font-smoothing: antialiased;
@@ -291,7 +291,7 @@ dialog::backdrop { background: rgb(0 0 0 / .65); backdrop-filter: blur(3px); }
 .viz-tip strong { color: var(--foreground); font-size: 15px; }
 .viz-tip span:last-child:not(:first-of-type) { color: var(--muted-foreground); }
 
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .card { transition: none; } .card:hover { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .card { transition: none; } .card:hover { transform: none; } }
 
 /* Larger than Full HD: wider page, 4 cards per row in "All projects" */
 @media (min-width: 1921px) {
@@ -301,3 +301,16 @@ dialog::backdrop { background: rgb(0 0 0 / .65); backdrop-filter: blur(3px); }
 
 /* Leave a little air above sections we scroll to */
 #panelProjects, #panelFrequency, #projectsSection { scroll-margin-top: 24px; }
+
+/* Section entering after a tab switch */
+@keyframes panel-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.enter { animation: panel-in .5s cubic-bezier(.2, .7, .2, 1) both; }
+.enter .card, .enter .viz-card { animation: panel-in .55s cubic-bezier(.2, .7, .2, 1) both; }
+.enter .grid > :nth-child(2), .enter .viz-row > :nth-child(1) { animation-delay: .04s; }
+.enter .grid > :nth-child(3), .enter .viz-row > :nth-child(2) { animation-delay: .08s; }
+.enter .grid > :nth-child(4) { animation-delay: .12s; }
+.enter .grid > :nth-child(n+5) { animation-delay: .16s; }
+@media (prefers-reduced-motion: reduce) {
+  @keyframes panel-fade { from { opacity: 0; } to { opacity: 1; } }
+  .enter, .enter .card, .enter .viz-card { animation-name: panel-fade; }
+}

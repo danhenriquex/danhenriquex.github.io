@@ -190,9 +190,53 @@ const closeDialog = () => $('dialog').close();
 
 // ---------------------------------------------------------------------------
 
+// Animated scroll (our own easing, so it is smooth in every browser).
+let scrollAnim = 0;
+const easeInOutCubic = (x) => (x < 0.5 ? 4 * x * x * x : 1 - (-2 * x + 2) ** 3 / 2);
+function scrollToEl(el, offset = 24) {
+  cancelAnimationFrame(scrollAnim);
+  const start = window.scrollY;
+  const target = Math.max(0, Math.min(
+    el.getBoundingClientRect().top + start - offset,
+    document.documentElement.scrollHeight - innerHeight,
+  ));
+  const dist = target - start;
+  if (Math.abs(dist) < 2) return Promise.resolve();
+  const duration = Math.min(1000, Math.max(450, Math.abs(dist) * 0.6));
+  const t0 = performance.now();
+  return new Promise((resolve) => {
+    const stop = () => { cancelAnimationFrame(scrollAnim); off(); resolve(); };
+    const off = () => ['wheel', 'touchstart', 'keydown'].forEach((ev) => removeEventListener(ev, stop));
+    ['wheel', 'touchstart', 'keydown'].forEach((ev) => addEventListener(ev, stop, { passive: true, once: true }));
+    const step = (now) => {
+      const p = Math.min(1, (now - t0) / duration);
+      window.scrollTo({ top: start + dist * easeInOutCubic(p), behavior: 'instant' });
+      if (p < 1) scrollAnim = requestAnimationFrame(step); else { off(); resolve(); }
+    };
+    scrollAnim = requestAnimationFrame(step);
+  });
+}
+
+// Swap panels without the page "jumping": hold the page height while the scroll animates.
+async function goTo(tab, el) {
+  const main = document.querySelector('main');
+  main.style.minHeight = `${main.offsetHeight}px`;
+  showTab(tab);
+  await scrollToEl(el());
+  main.style.minHeight = '';
+}
+
 let freq = null;
 function showTab(tab, { updateHash = true } = {}) {
   const isFreq = tab === 'frequency';
+  const panel = $(isFreq ? 'panelFrequency' : 'panelProjects');
+  if (panel.hidden) {
+    panel.classList.remove('enter');
+    void panel.offsetWidth; // restart the CSS animation
+    panel.classList.add('enter');
+    clearTimeout(panel._enterTimer);
+    panel._enterTimer = setTimeout(() => panel.classList.remove('enter'), 900); // free :hover transforms
+  }
   $('panelProjects').hidden = isFreq;
   $('panelFrequency').hidden = !isFreq;
   $('tabProjects').setAttribute('aria-selected', String(!isFreq));
@@ -208,8 +252,7 @@ function pickTech(tech) {
   $('search').value = '';
   $('stackFilter').value = tech;
   renderList();
-  showTab('projects');
-  $('projectsSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  goTo('projects', () => $('projectsSection'));
 }
 
 function renderAll() {
@@ -226,8 +269,7 @@ function renderAll() {
 function bind() {
   // Header tabs: switch the view and scroll down to it.
   document.querySelectorAll('.tab').forEach((el) => el.addEventListener('click', () => {
-    showTab(el.dataset.tab);
-    $(el.dataset.tab === 'frequency' ? 'panelFrequency' : 'panelProjects').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    goTo(el.dataset.tab, () => $(el.dataset.tab === 'frequency' ? 'panelFrequency' : 'panelProjects'));
   }));
   $('expMore').addEventListener('click', () => { state.allExp = !state.allExp; renderAbout(DATA); });
   $('search').addEventListener('input', (e) => { state.q = e.target.value; renderList(); });
@@ -248,8 +290,7 @@ function bind() {
     if (c) openProject(c.dataset.name);
     if (e.target.closest('#seeProjects')) {
       e.preventDefault();
-      showTab('projects');
-      $('projectsSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      goTo('projects', () => $('projectsSection'));
     }
   });
   // README anchor links (#section) -> GitHub prefixes heading ids with "user-content-".
@@ -282,7 +323,7 @@ async function init() {
   const hash = decodeURIComponent(location.hash.slice(1));
   if (hash === 'frequency') {
     showTab('frequency', { updateHash: false });
-    requestAnimationFrame(() => $('panelFrequency').scrollIntoView({ block: 'start' }));
+    requestAnimationFrame(() => scrollToEl($('panelFrequency')));
   }
   else if (hash) openProject(hash);
 }

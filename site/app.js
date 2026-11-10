@@ -224,7 +224,11 @@ function renderAll() {
 }
 
 function bind() {
-  document.querySelectorAll('.tab').forEach((el) => el.addEventListener('click', () => showTab(el.dataset.tab)));
+  // Header tabs: switch the view and scroll down to it.
+  document.querySelectorAll('.tab').forEach((el) => el.addEventListener('click', () => {
+    showTab(el.dataset.tab);
+    $(el.dataset.tab === 'frequency' ? 'panelFrequency' : 'panelProjects').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }));
   $('expMore').addEventListener('click', () => { state.allExp = !state.allExp; renderAbout(DATA); });
   $('search').addEventListener('input', (e) => { state.q = e.target.value; renderList(); });
   $('stackFilter').addEventListener('change', (e) => { state.stack = e.target.value; renderList(); });
@@ -276,7 +280,10 @@ async function init() {
   }
   renderAll();
   const hash = decodeURIComponent(location.hash.slice(1));
-  if (hash === 'frequency') showTab('frequency', { updateHash: false });
+  if (hash === 'frequency') {
+    showTab('frequency', { updateHash: false });
+    requestAnimationFrame(() => $('panelFrequency').scrollIntoView({ block: 'start' }));
+  }
   else if (hash) openProject(hash);
 }
 

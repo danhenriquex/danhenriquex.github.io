@@ -11,10 +11,191 @@
     "pt": "Construo agentes de IA, pipelines RAG e sistemas de dados — do protótipo à produção.",
     "es": "Construyo agentes de IA, pipelines RAG y sistemas de datos — del prototipo a producción."
   },
-  "about": [
-    "Bachelor's degree in Data Science and Artificial Intelligence (UFPB).",
-    "Master's student in Computer Science (PPGI), focused on Artificial Intelligence.",
-    "Working across LLMs, data engineering, MLOps and data science."
+  "about": {
+    "en": [
+      "I'm a Data Scientist and AI Engineer who designs and ships LLM-based products: multi-agent architectures, RAG systems and production data pipelines on Google Cloud. Most recently I led the AI solutions of a sales team, building a conversational SDR agent end to end.",
+      "I started out as a software engineer — years of React, TypeScript and Java — so I bring a strong focus on architecture, code quality and continuous delivery to every AI project.",
+      "I'm finishing my Master's in Computer Science with an emphasis on AI at UFPB (expected January 2027), and I love learning: I'm always studying what's new, lately MCP, A2A, Google ADK and LangGraph."
+    ],
+    "pt": [
+      "Sou Cientista de Dados e Engenheiro de IA. Projeto e coloco em produção soluções baseadas em LLMs: arquiteturas multiagente, sistemas RAG e pipelines de dados na Google Cloud. Mais recentemente, liderei as soluções de IA de um time comercial, construindo de ponta a ponta um agente SDR conversacional.",
+      "Comecei como engenheiro de software — anos de React, TypeScript e Java —, por isso levo para os projetos de IA um forte foco em arquitetura, qualidade de código e entrega contínua.",
+      "Estou finalizando o Mestrado em Informática com ênfase em IA na UFPB (previsão: janeiro de 2027) e gosto muito de aprender: estou sempre estudando o que há de novo — ultimamente MCP, A2A, Google ADK e LangGraph."
+    ],
+    "es": [
+      "Soy Científico de Datos e Ingeniero de IA. Diseño y llevo a producción soluciones basadas en LLMs: arquitecturas multiagente, sistemas RAG y pipelines de datos en Google Cloud. Recientemente lideré las soluciones de IA de un equipo comercial, construyendo de punta a punta un agente SDR conversacional.",
+      "Empecé como ingeniero de software — años de React, TypeScript y Java —, por eso aporto a los proyectos de IA un fuerte enfoque en arquitectura, calidad de código y entrega continua.",
+      "Estoy terminando la Maestría en Informática con énfasis en IA en la UFPB (prevista para enero de 2027) y me encanta aprender: siempre estoy estudiando lo nuevo — últimamente MCP, A2A, Google ADK y LangGraph."
+    ]
+  },
+  "learning": [
+    "Google ADK",
+    "A2A Protocol",
+    "MCP",
+    "LangGraph",
+    "n8n",
+    "Generative AI System Design",
+    "Multimodal RAG"
+  ],
+  "experience": [
+    {
+      "company": "Sólides",
+      "role": {
+        "en": "AI Engineer",
+        "pt": "Engenheiro de IA Pleno",
+        "es": "Ingeniero de IA"
+      },
+      "start": "2026-04",
+      "end": "2026-09",
+      "highlight": {
+        "en": "Technical lead for the sales team's AI solutions: a multi-agent conversational SDR agent with RAG, CRM and messaging integrations, plus ADK and n8n agents on GCP.",
+        "pt": "Liderança técnica das soluções de IA do time comercial: um agente SDR conversacional multiagente com RAG, integração com CRM e mensageria, além de agentes com ADK e n8n na GCP.",
+        "es": "Liderazgo técnico de las soluciones de IA del equipo comercial: un agente SDR conversacional multiagente con RAG, integración con CRM y mensajería, además de agentes con ADK y n8n en GCP."
+      }
+    },
+    {
+      "company": "Ford Motor Company",
+      "role": {
+        "en": "Software & AI Engineer",
+        "pt": "Engenheiro de Software e IA",
+        "es": "Ingeniero de Software e IA"
+      },
+      "start": "2025-04",
+      "end": "2026-04",
+      "highlight": {
+        "en": "A multimodal LLM app for automated 2D drawing verification, and a Java/Angular integration between Auros (E2KS) and Teamcenter that automates CAD reports.",
+        "pt": "Aplicação multimodal com LLMs para verificação automatizada de desenhos 2D e integração Java/Angular entre Auros (E2KS) e Teamcenter que automatiza relatórios de CAD.",
+        "es": "Aplicación multimodal con LLMs para la verificación automatizada de dibujos 2D e integración Java/Angular entre Auros (E2KS) y Teamcenter que automatiza informes de CAD."
+      }
+    },
+    {
+      "company": "Synchro — Soluções Fiscais",
+      "role": {
+        "en": "Data & AI Scientist",
+        "pt": "Cientista de Dados e IA",
+        "es": "Científico de Datos e IA"
+      },
+      "start": "2025-07",
+      "end": "2026-01",
+      "highlight": {
+        "en": "LLMs and data pipelines to analyze large volumes of tax receipts, benchmarks of extraction and classification architectures, and n8n automations.",
+        "pt": "LLMs e pipelines de dados para analisar grandes volumes de recibos fiscais, benchmarks de arquiteturas de extração e classificação e automações no n8n.",
+        "es": "LLMs y pipelines de datos para analizar grandes volúmenes de recibos fiscales, benchmarks de arquitecturas de extracción y clasificación y automatizaciones en n8n."
+      }
+    },
+    {
+      "company": "Sistema de Monitoramento da Cooperação Internacional",
+      "role": {
+        "en": "Data Scientist",
+        "pt": "Cientista de Dados",
+        "es": "Científico de Datos"
+      },
+      "start": "2024-12",
+      "end": "2025-09",
+      "highlight": {
+        "en": "Extraction and analysis of the Paraíba Official Gazette with web scraping, NLP, RAG and multimodal OCR models (Qwen, MinerU, Llama-Cloud).",
+        "pt": "Extração e análise do Diário Oficial da Paraíba com web scraping, NLP, RAG e modelos multimodais de OCR (Qwen, MinerU, Llama-Cloud).",
+        "es": "Extracción y análisis del Diario Oficial de Paraíba con web scraping, NLP, RAG y modelos multimodales de OCR (Qwen, MinerU, Llama-Cloud)."
+      }
+    },
+    {
+      "company": "Wisecare Tecnologia",
+      "role": {
+        "en": "Front-End Developer",
+        "pt": "Desenvolvedor Front-End",
+        "es": "Desarrollador Front-End"
+      },
+      "start": "2021-12",
+      "end": "2025-04",
+      "highlight": {
+        "en": "Healthcare web systems with React, TypeScript and DDD; led a Design System documented in Storybook and the migration to Next.js.",
+        "pt": "Sistemas web para a saúde com React, TypeScript e DDD; liderei um Design System documentado no Storybook e a migração para Next.js.",
+        "es": "Sistemas web para salud con React, TypeScript y DDD; lideré un Design System documentado en Storybook y la migración a Next.js."
+      }
+    },
+    {
+      "company": "CPQD",
+      "role": {
+        "en": "Machine Learning Intern",
+        "pt": "Estágio em Machine Learning",
+        "es": "Pasante de Machine Learning"
+      },
+      "start": "2023-07",
+      "end": "2024-07",
+      "highlight": {
+        "en": "An ML platform for collection strategies, and fine-tuning Portuguese LLMs for Q&A with PyTorch and TensorFlow.",
+        "pt": "Plataforma de ML para estratégias de cobrança e fine-tuning de LLMs em português para Q&A com PyTorch e TensorFlow.",
+        "es": "Plataforma de ML para estrategias de cobranza y fine-tuning de LLMs en portugués para Q&A con PyTorch y TensorFlow."
+      }
+    },
+    {
+      "company": "Autono Dev",
+      "role": {
+        "en": "Front-End Developer (Web/Mobile)",
+        "pt": "Desenvolvedor Front-End Web/Mobile",
+        "es": "Desarrollador Front-End Web/Mobile"
+      },
+      "start": "2021-08",
+      "end": "2023-12",
+      "highlight": {
+        "en": "React Native apps (CLI and Expo) end to end, Design Systems, tests, CI/CD and Sentry.",
+        "pt": "Apps React Native (CLI e Expo) de ponta a ponta, Design Systems, testes, CI/CD e Sentry.",
+        "es": "Apps React Native (CLI y Expo) de punta a punta, Design Systems, pruebas, CI/CD y Sentry."
+      }
+    },
+    {
+      "company": "Netfans",
+      "role": {
+        "en": "Front-End Developer",
+        "pt": "Desenvolvedor Front-End",
+        "es": "Desarrollador Front-End"
+      },
+      "start": "2021-08",
+      "end": "2022-08",
+      "highlight": {
+        "en": "An immersive web app that simulates live online audiences.",
+        "pt": "Aplicação web imersiva que simula plateias online.",
+        "es": "Aplicación web inmersiva que simula audiencias en línea."
+      }
+    },
+    {
+      "company": "Paraíba Humana Inteligente",
+      "role": {
+        "en": "Front-End Developer",
+        "pt": "Desenvolvedor Front-End",
+        "es": "Desarrollador Front-End"
+      },
+      "start": "2021-08",
+      "end": "2022-03",
+      "highlight": {
+        "en": "A system to register and manage social information.",
+        "pt": "Sistema de registro e gestão de informações sociais.",
+        "es": "Sistema de registro y gestión de información social."
+      }
+    }
+  ],
+  "education": [
+    {
+      "degree": {
+        "en": "Master's in Computer Science (emphasis in AI)",
+        "pt": "Mestrado em Informática (ênfase em IA)",
+        "es": "Maestría en Informática (énfasis en IA)"
+      },
+      "school": "UFPB",
+      "start": "2024-08",
+      "end": "2027-01",
+      "expected": true
+    },
+    {
+      "degree": {
+        "en": "Bachelor's in Data Science and Artificial Intelligence",
+        "pt": "Bacharelado em Ciência de Dados e Inteligência Artificial",
+        "es": "Licenciatura en Ciencia de Datos e Inteligencia Artificial"
+      },
+      "school": "UFPB",
+      "start": "2020-07",
+      "end": "2024-06"
+    }
   ],
   "links": [
     {

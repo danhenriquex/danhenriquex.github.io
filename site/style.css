@@ -81,7 +81,7 @@ button { font: inherit; color: inherit; }
     0 0 40px color-mix(in oklab, var(--primary) 25%, transparent);
 }
 @media (min-width: 768px) { .avatar { width: 104px; height: 104px; } }
-.eyebrow { margin: 0 0 16px; font: 14px var(--mono); color: var(--primary); }
+.eyebrow { margin: 0 0 16px; font: 500 clamp(16px, 1.1rem + .4vw, 20px) var(--mono); letter-spacing: .01em; color: var(--primary); }
 .hero h1 { font-size: 48px; line-height: 1; font-weight: 600; letter-spacing: -.025em; }
 @media (min-width: 768px) { .hero h1 { font-size: 72px; } }
 .tagline { margin: 24px 0 0; max-width: 36rem; font-size: 18px; line-height: 1.55; color: var(--muted-foreground); }

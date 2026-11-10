@@ -268,3 +268,9 @@ dialog::backdrop { background: rgb(0 0 0 / .65); backdrop-filter: blur(3px); }
 .viz-tip span:last-child:not(:first-of-type) { color: var(--muted-foreground); }
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .card { transition: none; } .card:hover { transform: none; } }
+
+/* Larger than Full HD: wider page, 4 cards per row in "All projects" */
+@media (min-width: 1921px) {
+  .wrap { max-width: 100rem; }
+  .grid-2 { grid-template-columns: repeat(4, 1fr); }
+}

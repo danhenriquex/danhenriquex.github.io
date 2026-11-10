@@ -16,9 +16,10 @@
     <header class="topbar wrap">
       <span class="brand" id="brand">&nbsp;<span class="caret">_</span></span>
       <nav class="topnav" role="tablist" aria-label="Views">
-        <button class="tab" role="tab" type="button" id="tabProjects" data-tab="projects" aria-controls="panelProjects" aria-selected="true">Projects</button>
-        <button class="tab" role="tab" type="button" id="tabFrequency" data-tab="frequency" aria-controls="panelFrequency" aria-selected="false">Frequency</button>
+        <button class="tab" role="tab" type="button" id="tabProjects" data-tab="projects" aria-controls="panelProjects" aria-selected="true" data-i18n="tab.projects">Projects</button>
+        <button class="tab tab-highlight" role="tab" type="button" id="tabFrequency" data-tab="frequency" aria-controls="panelFrequency" aria-selected="false" data-i18n="tab.frequency">Frequency</button>
         <span class="navlinks" id="navLinks"></span>
+        <span class="langs-switch" id="langSwitch" role="group" data-i18n-aria-label="language"></span>
       </nav>
     </header>
 
@@ -33,45 +34,45 @@
 
       <div id="panelProjects" role="tabpanel" aria-labelledby="tabProjects">
         <section id="featuredSection" class="block" hidden>
-          <h2 class="label">Featured</h2>
+          <h2 class="label" data-i18n="featured">Featured</h2>
           <div class="grid grid-3" id="featured"></div>
         </section>
 
         <section id="projectsSection" class="block">
           <div class="block-head">
-            <h2 class="label">All projects · <span id="count"></span></h2>
+            <h2 class="label"><span data-i18n="allProjects">All projects</span> · <span id="count"></span></h2>
             <div class="chips" id="categories" role="tablist" aria-label="Filter by category"></div>
           </div>
           <div class="toolbar">
             <label class="search">
               <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M10 2a8 8 0 0 1 6.32 12.9l5.39 5.4-1.41 1.4-5.4-5.38A8 8 0 1 1 10 2Zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12Z"/></svg>
-              <input id="search" type="search" placeholder="Search projects, stacks…" autocomplete="off">
+              <input id="search" type="search" placeholder="Search projects, stacks…" data-i18n-placeholder="search" autocomplete="off">
             </label>
             <select id="stackFilter" aria-label="Filter by technology"><option value="">All technologies</option></select>
             <select id="sort" aria-label="Sort">
-              <option value="featured">Featured first</option>
-              <option value="updated">Recently updated</option>
-              <option value="created">Newest</option>
-              <option value="stars">Most stars</option>
-              <option value="name">Name</option>
+              <option value="featured" data-i18n="sort.featured">Featured first</option>
+              <option value="updated" data-i18n="sort.updated">Recently updated</option>
+              <option value="created" data-i18n="sort.created">Newest</option>
+              <option value="stars" data-i18n="sort.stars">Most stars</option>
+              <option value="name" data-i18n="sort.name">Name</option>
             </select>
           </div>
           <div class="grid grid-2" id="projects"></div>
-          <p class="empty" id="empty" hidden>No projects match your filters.</p>
+          <p class="empty" id="empty" data-i18n="empty" hidden>No projects match your filters.</p>
         </section>
       </div>
 
       <div id="panelFrequency" class="block" role="tabpanel" aria-labelledby="tabFrequency" hidden>
         <div class="block-head">
-          <h2 class="label">Frequency</h2>
+          <h2 class="label" data-i18n="frequency">Frequency</h2>
           <div class="chips" id="freqCats" role="tablist" aria-label="Scope the charts by category"></div>
         </div>
 
         <figure class="viz-card">
           <header class="viz-head">
             <div>
-              <h3 class="viz-title">Technologies</h3>
-              <p class="viz-sub">Share of <span class="freq-scope"></span> that use each technology. A project usually uses several, so the bars don't add up to 100%.</p>
+              <h3 class="viz-title" data-i18n="techTitle">Technologies</h3>
+              <p class="viz-sub" id="techSub"></p>
             </div>
             <button class="viz-toggle" type="button" data-table-toggle="tech" aria-pressed="false">Table</button>
           </header>
@@ -83,8 +84,8 @@
           <figure class="viz-card">
             <header class="viz-head">
               <div>
-                <h3 class="viz-title">Primary language</h3>
-                <p class="viz-sub">Main language of <span class="freq-scope"></span>, by code size in each repo.</p>
+                <h3 class="viz-title" data-i18n="langTitle">Primary language</h3>
+                <p class="viz-sub" id="langSub"></p>
               </div>
               <button class="viz-toggle" type="button" data-table-toggle="lang" aria-pressed="false">Table</button>
             </header>
@@ -94,8 +95,8 @@
           <figure class="viz-card">
             <header class="viz-head">
               <div>
-                <h3 class="viz-title">Stack over time</h3>
-                <p class="viz-sub">Projects started each year that use a technology, across <span class="freq-scope"></span>.</p>
+                <h3 class="viz-title" data-i18n="heatTitle">Stack over time</h3>
+                <p class="viz-sub" id="heatSub"></p>
               </div>
               <button class="viz-toggle" type="button" data-table-toggle="heat" aria-pressed="false">Table</button>
             </header>
@@ -120,7 +121,7 @@
           <h2 id="dTitle"></h2>
           <p class="sheet-summary" id="dSummary"></p>
         </div>
-        <button class="close" id="dClose" type="button" aria-label="Close">×</button>
+        <button class="close" id="dClose" type="button" aria-label="Close" data-i18n-aria-label="close">×</button>
       </header>
       <div class="sheet-links" id="dLinks"></div>
       <div class="tags" id="dStack"></div>

@@ -53,6 +53,20 @@ button { font: inherit; color: inherit; }
 .tab { background: none; border: 0; padding: 0; cursor: pointer; color: var(--muted-foreground); transition: color .15s; }
 .tab:hover, .topnav a:hover { color: var(--foreground); }
 .tab[aria-selected="true"] { color: var(--foreground); }
+.tab-highlight {
+  border: 1px solid color-mix(in oklab, var(--primary) 70%, transparent); border-radius: 999px; padding: 4px 14px;
+  color: var(--accent-foreground); box-shadow: 0 0 18px color-mix(in oklab, var(--primary) 18%, transparent);
+  transition: color .15s, background-color .15s, border-color .15s;
+}
+.tab-highlight:hover { border-color: var(--primary); color: var(--foreground); }
+.tab-highlight[aria-selected="true"] { background: var(--accent); border-color: var(--primary); color: var(--accent-foreground); }
+.langs-switch { display: inline-flex; border: 1px solid var(--border); border-radius: 999px; padding: 2px; gap: 2px; }
+.langs-switch button {
+  font: 11px var(--mono); letter-spacing: .04em; color: var(--muted-foreground); background: none; border: 0;
+  border-radius: 999px; padding: 3px 8px; cursor: pointer;
+}
+.langs-switch button:hover { color: var(--foreground); }
+.langs-switch button[aria-pressed="true"] { background: var(--secondary); color: var(--foreground); }
 .topnav a { transition: color .15s; }
 @media (max-width: 480px) { .topnav { gap: 16px; } }
 
@@ -88,12 +102,13 @@ button { font: inherit; color: inherit; }
 .block-head .label { margin: 0; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .chip {
-  border: 1px solid var(--border); border-radius: 999px; padding: 4px 12px; font-size: 12px; line-height: 16px;
+  border: 1px solid var(--border); border-radius: 999px; padding: 7px 16px; font-size: 14px; line-height: 18px;
   color: var(--muted-foreground); background: transparent; cursor: pointer; transition: color .15s, border-color .15s, background-color .15s;
 }
 .chip:hover { color: var(--foreground); }
 .chip[aria-selected="true"] { border-color: var(--primary); background: var(--accent); color: var(--accent-foreground); }
-.chip small { font: 11px var(--mono); opacity: .6; margin-left: 2px; }
+.chip small { font: 12px var(--mono); opacity: .6; margin-left: 4px; }
+@media (max-width: 480px) { .chip { padding: 6px 13px; font-size: 13px; } }
 
 .toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
 .search {

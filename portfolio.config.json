@@ -1,8 +1,16 @@
 {
   "username": "danhenriquex",
   "name": "Danilo Henrique",
-  "headline": "AI & Software Engineer",
-  "tagline": "I build AI agents, RAG pipelines and data systems — from prototype to production.",
+  "headline": {
+    "en": "AI & Software Engineer",
+    "pt": "Engenheiro de IA & Software",
+    "es": "Ingeniero de IA y Software"
+  },
+  "tagline": {
+    "en": "I build AI agents, RAG pipelines and data systems — from prototype to production.",
+    "pt": "Construo agentes de IA, pipelines RAG e sistemas de dados — do protótipo à produção.",
+    "es": "Construyo agentes de IA, pipelines RAG y sistemas de datos — del prototipo a producción."
+  },
   "about": [
     "Bachelor's degree in Data Science and Artificial Intelligence (UFPB).",
     "Master's student in Computer Science (PPGI), focused on Artificial Intelligence.",

@@ -1,0 +1,24 @@
+{
+  "username": "danhenriquex",
+  "name": "Danilo Henrique",
+  "headline": "AI Engineer",
+  "about": [
+    "Bachelor's degree in Data Science and Artificial Intelligence (UFPB).",
+    "Master's student in Computer Science (PPGI), focused on Artificial Intelligence.",
+    "Working across LLMs, data engineering, MLOps and data science."
+  ],
+  "links": [
+    { "label": "GitHub", "url": "https://github.com/danhenriquex" }
+  ],
+  "featured": [
+    "Multi-Agent-Research-Orchestrator-with-MCP-Integration",
+    "Real-Time-RAG-Pipeline-with-Kafka-Event-Stream",
+    "Multi-Stage-Content-Production-Pipeline-with-CrewAI",
+    "Real-Time-Streaming",
+    "Kubernetes-for-Data-Engineering",
+    "Machine_Learning_Project"
+  ],
+  "exclude": [],
+  "include_forks": false,
+  "include_archived": true
+}

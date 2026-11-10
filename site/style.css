@@ -59,6 +59,13 @@ button { font: inherit; color: inherit; }
 /* Hero --------------------------------------------------------------------- */
 .hero { padding: 96px 0; }
 @media (min-width: 768px) { .hero { padding: 128px 0; } }
+.avatar {
+  display: block; width: 88px; height: 88px; border-radius: 50%; object-fit: cover; margin-bottom: 28px;
+  border: 1px solid var(--border); background: var(--secondary);
+  box-shadow: 0 0 0 4px var(--background), 0 0 0 5px color-mix(in oklab, var(--primary) 45%, transparent),
+    0 0 40px color-mix(in oklab, var(--primary) 25%, transparent);
+}
+@media (min-width: 768px) { .avatar { width: 104px; height: 104px; } }
 .eyebrow { margin: 0 0 16px; font: 14px var(--mono); color: var(--primary); }
 .hero h1 { font-size: 48px; line-height: 1; font-weight: 600; letter-spacing: -.025em; }
 @media (min-width: 768px) { .hero h1 { font-size: 72px; } }

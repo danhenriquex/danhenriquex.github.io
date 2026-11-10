@@ -760,6 +760,21 @@ def process_repo(owner: str, repo: dict, featured: list[str]) -> tuple[dict, dic
     return project, facts, readme_html
 
 
+def bust_cache(out: Path) -> None:
+    """Append ?v=<content hash> to CSS/JS references so a deploy never mixes new HTML with cached old assets."""
+    import hashlib
+    assets = ["style.css", "app.js", "frequency.js", "i18n.js"]
+    digest = hashlib.sha1(b"".join((out / f).read_bytes() for f in assets if (out / f).exists())).hexdigest()[:10]
+    for f in ["index.html", "app.js", "frequency.js"]:
+        path = out / f
+        if not path.exists():
+            continue
+        text = path.read_text(encoding="utf-8")
+        for asset in assets:
+            text = re.sub(rf'(["\'](?:\./)?){re.escape(asset)}(["\'])', rf"\g<1>{asset}?v={digest}\g<2>", text)
+        path.write_text(text, encoding="utf-8")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
     ap.add_argument("--readme-drafts", action="store_true",
@@ -793,6 +808,7 @@ def main() -> None:
     if OUT.exists():
         shutil.rmtree(OUT)
     shutil.copytree(SITE_SRC, OUT)
+    bust_cache(OUT)
     (OUT / "data").mkdir()
     (OUT / "readmes").mkdir()
 

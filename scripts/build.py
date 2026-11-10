@@ -812,6 +812,7 @@ def main() -> None:
         "name": cfg.get("name") or user.get("name") or owner,
         "headline": cfg.get("headline") or user.get("bio") or "",
         "tagline": cfg.get("tagline", ""),
+        "cv": cfg.get("cv"),
         "about": cfg.get("about", []),
         "learning": cfg.get("learning", []),
         "experience": cfg.get("experience", []),

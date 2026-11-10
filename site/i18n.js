@@ -20,6 +20,7 @@ const DICT = {
     readmeLoading: 'Loading README…', readmeError: 'Could not load the README.',
     noReadme: "This repository doesn't have a README yet. The summary above was generated from its detected stack.",
     synced: 'synced from GitHub {ago}', close: 'Close', language: 'Language',
+    cv: 'Download CV', cvTitle: 'Résumé (PDF, English)',
     about: 'About', learning: 'Recently studied', experience: 'Experience', education: 'Education',
     expected: 'expected', showAllExp: 'Show all ({n})', showLess: 'Show less',
     // Frequency
@@ -53,6 +54,7 @@ const DICT = {
     readmeLoading: 'Carregando README…', readmeError: 'Não foi possível carregar o README.',
     noReadme: 'Este repositório ainda não tem README. O resumo acima foi gerado a partir das tecnologias detectadas.',
     synced: 'sincronizado com o GitHub {ago}', close: 'Fechar', language: 'Idioma',
+    cv: 'Baixar CV', cvTitle: 'Currículo (PDF, português)',
     about: 'Sobre mim', learning: 'Estudos recentes', experience: 'Experiência', education: 'Formação',
     expected: 'previsto', showAllExp: 'Mostrar todas ({n})', showLess: 'Mostrar menos',
     frequency: 'Frequência', table: 'Tabela', chart: 'Gráfico', showAll: 'Mostrar todas ({n})', showTop: 'Mostrar top {n}',
@@ -85,6 +87,7 @@ const DICT = {
     readmeLoading: 'Cargando README…', readmeError: 'No se pudo cargar el README.',
     noReadme: 'Este repositorio aún no tiene README. El resumen de arriba se generó a partir de las tecnologías detectadas.',
     synced: 'sincronizado con GitHub {ago}', close: 'Cerrar', language: 'Idioma',
+    cv: 'Descargar CV', cvTitle: 'Currículum (PDF, en inglés)',
     about: 'Sobre mí', learning: 'Estudios recientes', experience: 'Experiencia', education: 'Formación',
     expected: 'previsto', showAllExp: 'Mostrar todas ({n})', showLess: 'Mostrar menos',
     frequency: 'Frecuencia', table: 'Tabla', chart: 'Gráfico', showAll: 'Mostrar todas ({n})', showTop: 'Mostrar top {n}',

@@ -11,6 +11,11 @@
     "pt": "Construo agentes de IA, pipelines RAG e sistemas de dados — do protótipo à produção.",
     "es": "Construyo agentes de IA, pipelines RAG y sistemas de datos — del prototipo a producción."
   },
+  "cv": {
+    "en": "cv/Danilo_Henrique_CV_EN.pdf",
+    "pt": "cv/Danilo_Henrique_CV_PT.pdf",
+    "es": "cv/Danilo_Henrique_CV_EN.pdf"
+  },
   "about": {
     "en": [
       "I'm a Data Scientist and AI Engineer who designs and ships LLM-based products: multi-agent architectures, RAG systems and production data pipelines on Google Cloud. Most recently I led the AI solutions of a sales team, building a conversational SDR agent end to end.",
@@ -41,7 +46,7 @@
     {
       "company": "Sólides",
       "role": {
-        "en": "AI Engineer",
+        "en": "Mid-Level AI Engineer",
         "pt": "Engenheiro de IA Pleno",
         "es": "Ingeniero de IA"
       },
@@ -56,22 +61,26 @@
     {
       "company": "Ford Motor Company",
       "role": {
-        "en": "Software & AI Engineer",
+        "en": "Software Engineer",
         "pt": "Engenheiro de Software e IA",
         "es": "Ingeniero de Software e IA"
       },
       "start": "2025-04",
       "end": "2026-04",
       "highlight": {
-        "en": "A multimodal LLM app for automated 2D drawing verification, and a Java/Angular integration between Auros (E2KS) and Teamcenter that automates CAD reports.",
+        "en": "A multimodal app built on Ford's proprietary LLMs for automated 2D drawing verification, and a Java/Angular integration between Auros (E2KS) and Teamcenter that automates CAD reports.",
         "pt": "Aplicação multimodal com LLMs para verificação automatizada de desenhos 2D e integração Java/Angular entre Auros (E2KS) e Teamcenter que automatiza relatórios de CAD.",
         "es": "Aplicación multimodal con LLMs para la verificación automatizada de dibujos 2D e integración Java/Angular entre Auros (E2KS) y Teamcenter que automatiza informes de CAD."
       }
     },
     {
-      "company": "Synchro — Soluções Fiscais",
+      "company": {
+        "en": "Synchro — Tax Solutions",
+        "pt": "Synchro — Soluções Fiscais",
+        "es": "Synchro — Soluciones Fiscales"
+      },
       "role": {
-        "en": "Data & AI Scientist",
+        "en": "Data Scientist and AI Engineer",
         "pt": "Cientista de Dados e IA",
         "es": "Científico de Datos e IA"
       },
@@ -84,7 +93,11 @@
       }
     },
     {
-      "company": "Sistema de Monitoramento da Cooperação Internacional",
+      "company": {
+        "en": "International Cooperation Monitoring System",
+        "pt": "Sistema de Monitoramento da Cooperação Internacional",
+        "es": "Sistema de Monitoreo de la Cooperación Internacional"
+      },
       "role": {
         "en": "Data Scientist",
         "pt": "Cientista de Dados",
@@ -131,7 +144,7 @@
     {
       "company": "Autono Dev",
       "role": {
-        "en": "Front-End Developer (Web/Mobile)",
+        "en": "Web/Mobile Front-End Developer",
         "pt": "Desenvolvedor Front-End Web/Mobile",
         "es": "Desarrollador Front-End Web/Mobile"
       },

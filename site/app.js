@@ -68,7 +68,9 @@ function renderProfile({ profile, generated_at }) {
   const links = profile.links?.length ? profile.links : [{ label: 'GitHub', url: profile.github }];
   const ext = (l, cls = '') => `<a ${cls ? `class="${cls}" ` : ''}href="${esc(l.url)}" target="_blank" rel="noopener">${esc(pick(l.label))}${cls ? ' ↗' : ''}</a>`;
   $('navLinks').innerHTML = links.map((l) => ext(l)).join('');
+  const cv = pick(profile.cv);
   $('heroCta').innerHTML = `<a class="btn primary" href="#projects" id="seeProjects">${esc(t('seeProjects'))}</a>`
+    + (cv ? `<a class="btn" href="${esc(cv)}" download title="${esc(t('cvTitle'))}">${esc(t('cv'))} ↓</a>` : '')
     + links.map((l) => ext(l, 'btn')).join('');
   $('copyright').textContent = `© ${new Date().getFullYear()} ${profile.name}`;
   $('generated').textContent = t('synced', { ago: ago(generated_at) });
@@ -91,7 +93,7 @@ function renderAbout({ profile }) {
   $('experienceWrap').hidden = !exp.length;
   $('experience').innerHTML = shown.map((e) => `<li>
       <div class="tl-head"><strong>${esc(pick(e.role))}</strong><span class="tl-date">${esc(period(e))}</span></div>
-      <span class="tl-org">${esc(e.company)}</span>
+      <span class="tl-org">${esc(pick(e.company))}</span>
       ${e.highlight ? `<p>${esc(pick(e.highlight))}</p>` : ''}
     </li>`).join('');
   $('expMore').hidden = exp.length <= EXP_SHOWN;

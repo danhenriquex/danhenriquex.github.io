@@ -31,7 +31,13 @@
     <dl class="stats" id="stats"></dl>
   </header>
 
+  <nav class="wrap tabs" role="tablist" aria-label="Views">
+    <button class="tab" role="tab" type="button" id="tabProjects" data-tab="projects" aria-controls="panelProjects" aria-selected="true">Projects</button>
+    <button class="tab" role="tab" type="button" id="tabFrequency" data-tab="frequency" aria-controls="panelFrequency" aria-selected="false">Frequency</button>
+  </nav>
+
   <main class="wrap">
+   <div id="panelProjects" role="tabpanel" aria-labelledby="tabProjects">
     <section id="featuredSection" hidden>
       <h2 class="section-title">Featured</h2>
       <div class="grid featured" id="featured"></div>
@@ -60,6 +66,47 @@
       <div class="grid" id="projects"></div>
       <p class="empty" id="empty" hidden>No projects match your filters.</p>
     </section>
+   </div>
+
+   <div id="panelFrequency" role="tabpanel" aria-labelledby="tabFrequency" hidden>
+    <div class="chips" id="freqCats" role="tablist" aria-label="Scope the charts by category"></div>
+
+    <figure class="viz-card">
+      <header class="viz-head">
+        <div>
+          <h2 class="viz-title">Technologies</h2>
+          <p class="viz-sub">Share of <span class="freq-scope"></span> that use each technology. A project usually uses several, so the bars don't add up to 100%.</p>
+        </div>
+        <button class="viz-toggle" type="button" data-table-toggle="tech" aria-pressed="false">Table</button>
+      </header>
+      <div id="techChart"></div>
+      <button class="viz-more" type="button" id="techMore" hidden></button>
+    </figure>
+
+    <div class="viz-row">
+      <figure class="viz-card">
+        <header class="viz-head">
+          <div>
+            <h2 class="viz-title">Primary language</h2>
+            <p class="viz-sub">Main language of <span class="freq-scope"></span>, by code size in each repo.</p>
+          </div>
+          <button class="viz-toggle" type="button" data-table-toggle="lang" aria-pressed="false">Table</button>
+        </header>
+        <div id="langChart"></div>
+      </figure>
+
+      <figure class="viz-card">
+        <header class="viz-head">
+          <div>
+            <h2 class="viz-title">Stack over time</h2>
+            <p class="viz-sub">Projects started each year that use a technology, across <span class="freq-scope"></span>.</p>
+          </div>
+          <button class="viz-toggle" type="button" data-table-toggle="heat" aria-pressed="false">Table</button>
+        </header>
+        <div id="heatChart"></div>
+      </figure>
+    </div>
+   </div>
   </main>
 
   <footer class="wrap footer">

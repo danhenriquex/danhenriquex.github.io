@@ -537,6 +537,8 @@ def readme_summary(parser: _ParagraphParser) -> str | None:
             continue
         if text.count("•") >= 2 or text.count("|") >= 2:
             continue
+        if text.rstrip().endswith(":"):  # "To get started, follow these steps:" introduces a list
+            continue
         return text if len(text) <= 240 else text[:237].rsplit(" ", 1)[0] + "…"
     return None
 

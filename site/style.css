@@ -46,29 +46,29 @@ button { font: inherit; color: inherit; }
 
 /* Top bar ------------------------------------------------------------------ */
 .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 24px; padding-bottom: 24px; flex-wrap: wrap; }
-.brand { font: 14px var(--mono); color: var(--muted-foreground); }
+.brand { font: 16px var(--mono); color: var(--muted-foreground); }
 .caret { color: var(--primary); }
-.topnav { display: flex; align-items: center; gap: 24px; font-size: 14px; color: var(--muted-foreground); flex-wrap: wrap; }
+.topnav { display: flex; align-items: center; gap: 24px; font-size: 16px; color: var(--muted-foreground); flex-wrap: wrap; }
 .navlinks { display: contents; }
 .tab { background: none; border: 0; padding: 0; cursor: pointer; color: var(--muted-foreground); transition: color .15s; }
 .tab:hover, .topnav a:hover { color: var(--foreground); }
 .tab[aria-selected="true"] { color: var(--foreground); }
 .tab-highlight {
-  border: 1px solid color-mix(in oklab, var(--primary) 70%, transparent); border-radius: 999px; padding: 4px 14px;
+  border: 1px solid color-mix(in oklab, var(--primary) 70%, transparent); border-radius: 999px; padding: 7px 18px;
   color: var(--accent-foreground); box-shadow: 0 0 18px color-mix(in oklab, var(--primary) 18%, transparent);
   transition: color .15s, background-color .15s, border-color .15s;
 }
 .tab-highlight:hover { border-color: var(--primary); color: var(--foreground); }
 .tab-highlight[aria-selected="true"] { background: var(--accent); border-color: var(--primary); color: var(--accent-foreground); }
-.langs-switch { display: inline-flex; border: 1px solid var(--border); border-radius: 999px; padding: 2px; gap: 2px; }
+.langs-switch { display: inline-flex; border: 1px solid var(--border); border-radius: 999px; padding: 3px; gap: 2px; }
 .langs-switch button {
-  font: 11px var(--mono); letter-spacing: .04em; color: var(--muted-foreground); background: none; border: 0;
-  border-radius: 999px; padding: 3px 8px; cursor: pointer;
+  font: 13px var(--mono); letter-spacing: .04em; color: var(--muted-foreground); background: none; border: 0;
+  border-radius: 999px; padding: 6px 12px; cursor: pointer;
 }
 .langs-switch button:hover { color: var(--foreground); }
 .langs-switch button[aria-pressed="true"] { background: var(--secondary); color: var(--foreground); }
 .topnav a { transition: color .15s; }
-@media (max-width: 480px) { .topnav { gap: 16px; } }
+@media (max-width: 480px) { .topnav { gap: 14px; font-size: 15px; } .tab-highlight { padding: 6px 14px; } .langs-switch button { padding: 5px 9px; font-size: 12px; } }
 
 /* Hero --------------------------------------------------------------------- */
 .hero { padding: 96px 0; }

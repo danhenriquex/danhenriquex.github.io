@@ -8,7 +8,14 @@
     "Working across LLMs, data engineering, MLOps and data science."
   ],
   "links": [
-    { "label": "GitHub", "url": "https://github.com/danhenriquex" }
+    {
+      "label": "GitHub",
+      "url": "https://github.com/danhenriquex"
+    },
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/danilo-henrique-santana/"
+    }
   ],
   "featured": [
     "Multi-Agent-Research-Orchestrator-with-MCP-Integration",

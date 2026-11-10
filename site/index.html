@@ -17,7 +17,7 @@
       <span class="brand" id="brand">&nbsp;<span class="caret">_</span></span>
       <nav class="topnav" role="tablist" aria-label="Views">
         <button class="tab" role="tab" type="button" id="tabProjects" data-tab="projects" aria-controls="panelProjects" aria-selected="true" data-i18n="tab.projects">Projects</button>
-        <button class="tab tab-highlight" role="tab" type="button" id="tabFrequency" data-tab="frequency" aria-controls="panelFrequency" aria-selected="false" data-i18n="tab.frequency">Frequency</button>
+        <button class="tab" role="tab" type="button" id="tabFrequency" data-tab="frequency" aria-controls="panelFrequency" aria-selected="false" data-i18n="tab.frequency">Frequency</button>
         <span class="navlinks" id="navLinks"></span>
         <span class="langs-switch" id="langSwitch" role="group" data-i18n-aria-label="language"></span>
       </nav>
@@ -78,9 +78,10 @@
               <option value="stars" data-i18n="sort.stars">Most stars</option>
               <option value="name" data-i18n="sort.name">Name</option>
             </select>
+            <button class="clear-filters" type="button" id="clearFilters" data-i18n="clearFilters" hidden>Clear filters</button>
           </div>
           <div class="grid grid-2" id="projects"></div>
-          <p class="empty" id="empty" data-i18n="empty" hidden>No projects match your filters.</p>
+          <p class="empty" id="empty" hidden><span data-i18n="empty">No projects match your filters.</span> <button class="clear-filters" type="button" data-clear data-i18n="clearFilters">Clear filters</button></p>
         </section>
       </div>
 

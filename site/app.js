@@ -122,12 +122,15 @@ function renderControls(projects) {
   $('stackFilter').value = state.stack;
 }
 
-function filtered() {
+// Technology + search filters (everything except the category chip).
+function matchesOthers(p) {
   const q = state.q.trim().toLowerCase();
-  let list = DATA.projects.filter((p) =>
-    (!state.cat || p.category === state.cat) &&
-    (!state.stack || p.stack.includes(state.stack)) &&
-    (!q || [p.title, p.name, p.summary, p.category, tCat(p.category), ...p.stack, ...p.topics].join(' ').toLowerCase().includes(q)));
+  return (!state.stack || p.stack.includes(state.stack)) &&
+    (!q || [p.title, p.name, p.summary, p.category, tCat(p.category), ...p.stack, ...p.topics].join(' ').toLowerCase().includes(q));
+}
+
+function filtered() {
+  let list = DATA.projects.filter((p) => (!state.cat || p.category === state.cat) && matchesOthers(p));
   const by = {
     updated: (a, b) => b.updated.localeCompare(a.updated),
     created: (a, b) => b.created.localeCompare(a.created),
@@ -144,8 +147,22 @@ function renderList() {
   $('projects').innerHTML = list.map(card).join('');
   $('empty').hidden = list.length > 0;
   $('count').textContent = list.length === total ? total : t('countOf', { n: list.length, total });
-  document.querySelectorAll('#categories .chip').forEach((c) =>
-    c.setAttribute('aria-selected', String(c.dataset.val === state.cat)));
+  // Chip counts follow the technology/search filters, so they always match what a click will show.
+  const others = DATA.projects.filter(matchesOthers);
+  document.querySelectorAll('#categories .chip').forEach((c) => {
+    const n = c.dataset.val ? others.filter((p) => p.category === c.dataset.val).length : others.length;
+    c.querySelector('small').textContent = n;
+    c.classList.toggle('zero', n === 0);
+    c.setAttribute('aria-selected', String(c.dataset.val === state.cat));
+  });
+  $('clearFilters').hidden = !(state.cat || state.stack || state.q);
+}
+
+function clearFilters() {
+  Object.assign(state, { cat: '', stack: '', q: '' });
+  $('search').value = '';
+  $('stackFilter').value = '';
+  renderList();
 }
 
 function renderFeatured() {
@@ -279,6 +296,8 @@ function bind() {
     const chip = e.target.closest('.chip');
     if (chip) { state.cat = chip.dataset.val; renderList(); }
   });
+  $('clearFilters').addEventListener('click', clearFilters);
+  $('empty').addEventListener('click', (e) => { if (e.target.closest('[data-clear]')) clearFilters(); });
   $('langSwitch').addEventListener('click', (e) => {
     const b = e.target.closest('[data-lang]');
     if (!b || b.dataset.lang === getLang()) return;

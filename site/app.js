@@ -65,6 +65,7 @@ function renderProfile({ profile, generated_at }) {
   $('name').textContent = profile.name;
   if (profile.avatar) Object.assign($('avatar'), { src: profile.avatar, alt: profile.name, hidden: false });
   $('tagline').textContent = pick(profile.tagline);
+  $('tagline').hidden = !$('tagline').textContent.trim();
   const links = profile.links?.length ? profile.links : [{ label: 'GitHub', url: profile.github }];
   const ext = (l, cls = '') => `<a ${cls ? `class="${cls}" ` : ''}href="${esc(l.url)}" target="_blank" rel="noopener">${esc(pick(l.label))}${cls ? ' ↗' : ''}</a>`;
   $('navLinks').innerHTML = links.map((l) => ext(l)).join('');

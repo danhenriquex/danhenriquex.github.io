@@ -6,11 +6,6 @@
     "pt": "Engenheiro de IA & Software",
     "es": "Ingeniero de IA y Software"
   },
-  "tagline": {
-    "en": "I build AI agents, RAG pipelines and data systems — from prototype to production.",
-    "pt": "Construo agentes de IA, pipelines RAG e sistemas de dados — do protótipo à produção.",
-    "es": "Construyo agentes de IA, pipelines RAG y sistemas de datos — del prototipo a producción."
-  },
   "cv": {
     "en": "cv/Danilo_Henrique_CV_EN.pdf",
     "pt": "cv/Danilo_Henrique_CV_PT.pdf",
